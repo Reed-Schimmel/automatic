@@ -152,9 +152,9 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf  /var/lib/apt/lists/*
 
-# Copy the startup script to the /bin/ folder and make executable.
-COPY startup.sh /bin/
-RUN chmod 755 /bin/startup.sh
+# # Copy the startup script to the /bin/ folder and make executable.
+# COPY startup.sh /bin/
+# RUN chmod 755 /bin/startup.sh
 
 # Volumes that can be used by the image when making containers.
 VOLUME [ "/deps" ]
