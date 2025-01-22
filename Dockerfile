@@ -2,7 +2,7 @@
 # docs: <https://github.com/vladmandic/automatic/wiki/Docker>
 
 # base image
-FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
+FROM intel/intel-extension-for-pytorch:2.5.10-xpu
 
 # metadata
 LABEL org.opencontainers.image.vendor="SD.Next"
@@ -13,7 +13,7 @@ LABEL org.opencontainers.image.source="https://github.com/vladmandic/automatic/"
 LABEL org.opencontainers.image.licenses="AGPL-3.0"
 LABEL org.opencontainers.image.title="SD.Next"
 LABEL org.opencontainers.image.description="SD.Next: Advanced Implementation of Stable Diffusion and other Diffusion-based generative image models"
-LABEL org.opencontainers.image.base.name="https://hub.docker.com/pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime"
+LABEL org.opencontainers.image.base.name="intel/intel-extension-for-pytorch:2.5.10-xpu"
 LABEL org.opencontainers.image.version="latest"
 
 # minimum install
@@ -41,7 +41,7 @@ ENV SD_DOCKER=true
 # tcmalloc is not required but it is highly recommended
 ENV LD_PRELOAD=libtcmalloc.so.4  
 # sdnext will run all necessary pip install ops and then exit
-RUN ["python", "/app/launch.py", "--debug", "--uv", "--use-cuda", "--log", "sdnext.log", "--test", "--optional"]
+RUN ["python", "/app/launch.py", "--debug", "--uv", "--use-ipex", "--log", "sdnext.log", "--test", "--optional"]
 # preinstall additional packages to avoid installation during runtime
 
 # actually run sdnext
