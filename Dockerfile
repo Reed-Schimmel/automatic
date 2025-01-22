@@ -233,4 +233,4 @@ ENV SD_DOCKER=true
 COPY . /app
 WORKDIR /app
 
-ENTRYPOINT [ "webui.sh" ]
+ENTRYPOINT [ "webui.sh", "--use-ipex" ]
